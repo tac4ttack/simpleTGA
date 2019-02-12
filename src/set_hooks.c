@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:56:08 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/11 15:04:28 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:16:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simple_tga_parser_tester.h"
 
 int		set_mlx_hooks(t_env *env) {
 	if (env)

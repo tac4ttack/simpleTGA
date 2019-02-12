@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:47:00 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/11 16:20:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:16:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simple_tga_parser_tester.h"
 
 void	mlx_key_events(t_env *env)
 {

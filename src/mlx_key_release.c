@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:50:30 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/11 14:47:10 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:16:39 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simple_tga_parser_tester.h"
 
 int	mlx_key_release(int key, t_env *env)
 {

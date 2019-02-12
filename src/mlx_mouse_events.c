@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:50:17 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/11 15:13:42 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:16:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simple_tga_parser_tester.h"
 
 int		mlx_mouse_events(int btn, int x, int y, t_env *env)
 {

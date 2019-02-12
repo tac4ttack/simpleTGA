@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:46:22 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/11 16:19:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/12 20:12:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simple_tga_parser_tester.h"
 
 int		init(t_env *env) {
 	if (env)
@@ -31,6 +31,10 @@ int		init(t_env *env) {
 		int bpp, row, endian;
 		if (!(env->frame_buffer_data = (int*)mlx_get_data_addr(env->frame_buffer_pointer, &bpp, &row, &endian)))
 			s_error("\x1b[2;31mCould not get frame buffer data pointer\x1b[0m", NULL);
+
+		env->target_img_pointer = NULL;
+		env->target_img_data = NULL;
+		env->target_file = NULL;
 
 		return (0);
 	}

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
+#    Updated: 2019/02/12 17:28:31 by fmessina         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = 					simple_tga_parser
 
 CC = 					clang
@@ -55,6 +67,9 @@ SRC_NAME =  			draw.c \
 						mlx_main_loop.c \
 						mlx_mouse_events.c \
 						set_hooks.c \
+						tga_error.c \
+						tga_load_file.c \
+						tga_process_file.c \
 						tools.c
 
 default: all

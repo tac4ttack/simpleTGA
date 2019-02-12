@@ -6,61 +6,54 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/11 19:00:55 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/12 17:18:53 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SIMPLE_TGA_PARSER_H
 # define SIMPLE_TGA_PARSER_H
 
-# include "mlx.h"
-# include "libft.h"
+# include <stdlib.h>    // required for NULL size_t exit bidule
+# include <sys/stat.h>   // required for stat()
+# include <fcntl.h>      // required for open()
+# include <unistd.h>    // required for read()
+# include <stdio.h>     // required for printf()
+# include <string.h>    // required for bzero()
 
-# ifdef MAC_KEYS
-#  include "mac_keys.h"
-# elif LINUX_KEYS
-#  include "linux_keys.h"
-# endif
+# define TGA_TYPE_NODATA 0
+# define TGA_TYPE_RAW_CM 1
+# define TGA_TYPE_RAW_TC 2
+# define TGA_TYPE_RAW_BW 3
+# define TGA_TYPE_RLE_CM 9
+# define TGA_TYPE_RLE_TC 10
+# define TGA_TYPE_RLE_BW 11
 
-# define WIDTH  				800
-# define HEIGHT 				600
-# define DESTROYNOTIFY			17
-# define KEYPRESSMASK			(1L<<0)
-# define KEYRELEASEMASK			(1L<<1)
-# define KEYPRESS				2
-# define KEYRELEASE				3
-
-typedef struct			s_tga_file
+// Pragma required to disable padding in next structure
+# pragma pack(push, 1)
+typedef struct			s_tga_header
 {
 	char				id_length;
-}						t_tga_file;
+	char				color_map_type;
+	char				image_type;
+	unsigned short		first_entry_index;
+	unsigned short		color_map_length;
+	unsigned char		color_map_entry_size;
+	unsigned short		x_origin;
+	unsigned short		y_origin;
+	unsigned short		image_width;
+	unsigned short		image_heigth;
+	unsigned char		pixel_depth;
+	unsigned char		image_descriptor;
+	// char				end_padding[3];	// inutile si pragma pack?
+}						t_tga_header;
+# pragma pack(pop)
 
-
-typedef	struct			s_env
-{
-	void				*mlx_pointer;
-	void				*mlx_window;
-    t_key               *mlx_keys;
-	void				*frame_buffer_pointer;
-	int					*frame_buffer_data;
-	t_tga_file			target_tga;
-	void				*target_img_pointer;
-	int					*target_img_data;
-	int					target_img_size[2];
-	int					target_img_offset[2];
-	char				*target_file;
-}						t_env;
-
-int     get_top_left_corner_x(t_env *env);
-int     get_top_left_corner_y(t_env *env);
-int		init(t_env *env);
-void	mlx_key_events(t_env *env);
-int		mlx_key_press(int key, t_env *env);
-int		mlx_key_release(int key, t_env *env);
-int		mlx_main_loop(t_env *env);
-int		mlx_mouse_events(int btn, int x, int y, t_env *env);
-int		quit(t_env *e);
-int		set_mlx_hooks(t_env *env);
-void	s_error(char *str, t_env *e);
+//	TGA parsing functions
+void				    *tga_error(const char *message, void *trash);
+unsigned int			*tga_load_file(const char *target,
+										size_t *width,
+										size_t *height);
+char					*tga_process_file(const char *target,
+										size_t *target_size);
 
 #endif
