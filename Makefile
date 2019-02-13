@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
-#    Updated: 2019/02/12 17:28:31 by fmessina         ###   ########.fr        #
+#    Updated: 2019/02/13 10:53:46 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,15 +97,33 @@ fclean: clean
 	@echo "$(GREEN)Deleting $(NAME) executable and config file$(EOC)"
 	@rm -rf $(NAME) ./config
 
+debug: debug_flag libft_debug all
+
+debug_asan: debug_flag debug_asan_flag libft_asan all
+
+debug_flag:
+	$(eval DEBUG_MACRO = -DDEBUG -g)
+
+debug_asan_flag:
+	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer)
+
 libft:
 	@echo "$(GREEN)Compiling Libft library$(EOC)"
 	make -C $(LIBFT_PATH)/ all
 
-cleanlibft:
+libft_debug:
+	@echo "Compiling Libft library with debug flag"
+	make -C $(LIBFT_PATH)/ debug all
+
+libft_asan:
+	@echo "Compiling Libft library with ASan"
+	make -C $(LIBFT_PATH)/ debug debug_asan all
+
+libft_clean:
 	@echo "$(GREEN)Cleaning Libft folder$(EOC)"
 	make -C $(LIBFT_PATH)/ clean
 
-fcleanlibft: cleanlibft
+libft_fclean: libft_clean
 	@echo "$(GREEN)Full cleaning Libft$(EOC)"
 	make -C $(LIBFT_PATH)/ fclean
 
@@ -113,7 +131,7 @@ mlx:
 	@echo "$(GREEN)Compiling MLX library$(EOC)"
 	make -C $(MLX_PATH)/ all
 
-cleanmlx:
+mlx_clean:
 	@echo "$(GREEN)Cleaning Minilibx folder$(EOC)"
 	@make -C ./mlx/mlx_capitan/ clean
 	@make -C ./mlx/mlx_sierra/ clean
