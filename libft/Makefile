@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 23:18:40 by fmessina          #+#    #+#              #
-#    Updated: 2017/11/23 16:07:51 by fmessina         ###   ########.fr        #
+#    Updated: 2019/02/13 11:18:24 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME =		libft.a
 
 CC =		clang
-CFLAGS +=	-Wall -Wextra -Werror $(ASANFLAGS)
+CFLAGS +=	-Wall -Wextra -Werror $(DEBUGFLAGS) $(ASANFLAGS)
 
 SRC =		ft_abs.c \
 			ft_ahtoi.c \
@@ -28,6 +28,7 @@ SRC =		ft_abs.c \
 			ft_error_if.c \
 			ft_fabs.c \
 			ft_facti.c \
+			ft_file_len.c \
 			ft_ftoa.c \
 			ft_intlen.c \
 			ft_isalnum.c \
@@ -69,6 +70,7 @@ SRC =		ft_abs.c \
 			ft_putstr.c \
 			ft_putwchar.c \
 			ft_putwstr.c \
+			ft_read_file.c \
 			ft_sin.c \
 			ft_strcat.c \
 			ft_strchr.c \
@@ -123,7 +125,10 @@ $(NAME): libft.h get_next_line.h $(SRC) $(OFILES)
 	@echo "Library indexed\n"
 
 debug:
-	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer -g)
+	$(eval DEBUGFLAGS = -DDEBUG_LIBFT -g)
+
+debug_asan: debug
+	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer)
 
 clean:
 	@echo "Cleaning object files..."
@@ -137,4 +142,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft debug debug_asan

@@ -6,11 +6,12 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 15:00:15 by fmessina          #+#    #+#             */
-/*   Updated: 2017/06/21 15:00:31 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/13 11:01:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
 char			*ft_ltoa(long n)
 {

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tan.c                                           :+:      :+:    :+:   */
+/*   ft_memrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntoniolo <ntoniolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/17 16:48:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/05/17 16:51:42 by fmessina         ###   ########.fr       */
+/*   Created: 2018/02/28 23:51:36 by ntoniolo          #+#    #+#             */
+/*   Updated: 2018/03/01 21:04:55 by ntoniolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double			ft_tan(double angle)
+void	*ft_memrealloc(void *ptr, size_t size_old, size_t size_new)
 {
-	return (ft_sin(angle) / ft_cos(angle));
+	void	*new_ptr;
+
+	if (!(new_ptr = ft_memalloc(size_new)))
+		return (NULL);
+	if (ptr)
+		new_ptr = ft_memcpy(new_ptr, ptr, size_old);
+	if (ptr)
+		free(ptr);
+	return (new_ptr);
 }

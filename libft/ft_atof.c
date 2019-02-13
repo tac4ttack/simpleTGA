@@ -6,11 +6,12 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 11:07:10 by fmessina          #+#    #+#             */
-/*   Updated: 2017/12/06 16:06:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/13 11:00:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <math.h>
 
 float		ft_atof(char const *str)
 {

@@ -6,22 +6,15 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 19:26:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/12/06 16:02:51 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/13 11:13:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "get_next_line.h"
 # include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <wchar.h>
-# include <limits.h>
-# include <stddef.h>
-# include <stdint.h>
-# include <math.h>
+# include "get_next_line.h"
 
 typedef struct		s_list
 {
@@ -29,6 +22,8 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+void				*ft_memrealloc(void *ptr, size_t size_old, size_t size_new);
 
 int					ft_ahtoi(char const *str);
 int					ft_atoi(char const *str);
@@ -58,6 +53,8 @@ float				ft_fabs(float f);
 
 void				ft_bzero(void *s, size_t n);
 
+size_t				ft_file_len(const char *target);
+
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
@@ -66,8 +63,10 @@ void				*ft_memcpy(void *dst, void const *src, size_t n);
 void				*ft_memccpy(void *dst, void const *src, int c, size_t n);
 void				*ft_memchr(void const *s, int c, size_t n);
 void				*ft_memmove(void *dst, void const *src, size_t len);
+void				*ft_memnew(void *ptr, size_t mem_size);
 
 void				ft_putnbr(int n);
+void				ft_putnbr_fd(int n, int fd);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 int					ft_putwchar(wchar_t c);

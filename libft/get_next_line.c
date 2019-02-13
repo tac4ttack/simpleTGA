@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmessina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:43:43 by fmessina          #+#    #+#             */
-/*   Updated: 2017/05/17 14:56:56 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/13 11:05:56 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 static void		ft_gnl_free(t_list **lst, int fd, char **str)
 {
@@ -52,13 +53,15 @@ static t_gnl	*ft_gnl_init(t_list **lst, int fd)
 			return (gnl);
 		tmp = tmp->next;
 	}
-	gnl = (t_gnl *)ft_memalloc(sizeof(t_gnl));
+	if (!(gnl = (t_gnl *)ft_memalloc(sizeof(t_gnl))))
+		return (NULL);
 	gnl->buffer = ft_strnew(b_size);
 	gnl->b_read = b_size;
 	gnl->i = b_size;
 	gnl->fd = fd;
 	gnl->new_line = 1;
-	tmp = ft_lstnew(gnl, sizeof(t_gnl));
+	if (!(tmp = ft_lstnew(gnl, sizeof(t_gnl))))
+		return (NULL);
 	ft_memdel((void **)&gnl);
 	ft_lstadd(lst, tmp);
 	return ((t_gnl *)(tmp->content));
@@ -117,9 +120,8 @@ int				get_next_line(int const fd, char **line)
 	char			*tmp;
 	int				status;
 
-	if (fd < 0 || !line || fd >= FD_MAX)
+	if (fd < 0 || !line || fd >= FD_MAX || !(gnl = ft_gnl_init(&lst, fd)))
 		return (-1);
-	gnl = ft_gnl_init(&lst, fd);
 	tmp = ft_strnew(0);
 	while (gnl->b_read > 0)
 	{
