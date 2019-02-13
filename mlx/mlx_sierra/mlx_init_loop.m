@@ -10,6 +10,15 @@
 
 #include "font.c"
 
+void mlx_del(void *mlx_ptr)
+{
+	mlx_ptr_t *ptr;
+
+	ptr = (mlx_ptr_t *)mlx_ptr;
+	free(ptr->font->buffer);
+	free(ptr->font);
+	free(ptr);
+}
 
 void	do_loop_hook2(CFRunLoopTimerRef observer, void * info)
 {
