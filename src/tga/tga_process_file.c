@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:17:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/12 17:25:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/15 10:00:10 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static int		tga_fetch_file_size(const char *target)
 		return ((size_t)file_stat.st_size);
 }
 
-static char		*tga_read_file(const char *target, size_t *length)
+static void		*tga_read_file(const char *target, size_t *length)
 {
 	int		fd;
-	char	*data_raw;
+	void	*data_raw;
 	ssize_t	read_return;
 
-	if (!(data_raw = malloc(sizeof(char) * (*length + 1))))
+	if (!(data_raw = malloc((*length + 1))))
 	{
 		*length = 0;
 		return (NULL);
@@ -41,12 +41,12 @@ static char		*tga_read_file(const char *target, size_t *length)
 		return (NULL);
 	}
 	read_return = read(fd, data_raw, *length);
-	data_raw[read_return] = '\0';
+	((char*)(data_raw))[read_return] = 0;
 	close(fd);
 	return (data_raw);
 }
 
-char			*tga_process_file(const char *target, size_t *target_size)
+void			*tga_process_file(const char *target, size_t *target_size)
 {
 	if (target && target_size)
 	{

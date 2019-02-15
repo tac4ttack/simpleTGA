@@ -6,15 +6,15 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
-#    Updated: 2019/02/13 10:53:46 by fmessina         ###   ########.fr        #
+#    Updated: 2019/02/15 16:37:28 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 					simple_tga_parser
+NAME = 					simple-tga-parser
 
 CC = 					clang
-CFLAGS +=				-Wall -Wextra -Werror
-OFLAGS := 				-O3 -Ofast
+CFLAGS +=				-Wall -Wextra -Werror $(DEBUG_MACRO) $(ASANFLAGS)
+OFLAGS := 				-O3
 RM := 					rm -rf
 
 INC_PATH =				./includes
@@ -29,6 +29,7 @@ LIBMATHFLAGS :=			-lm
 OS_TEST := $(shell uname)
 ifeq ($(OS_TEST), Darwin)
 INC_NAMES = 			$(NAME).h \
+						$(NAME)_tester.h\
 						mac_keys.h
 MLXFLAGS =				-framework OpenGL -framework AppKit
 KEYS =					-DMAC_KEYS
@@ -45,6 +46,7 @@ ifeq ($(OS_TEST),"Linux")
 OS_NAME =				"Linux"
 MLX_PATH =				./mlx/mlx_x11
 INC_NAMES = 			$(NAME).h \
+						$(NAME)_tester.h\
 						linux_keys.h
 MLXFLAGS =				-lmlx -lXext -lX11
 KEYS =					-DLINUX_KEYS
@@ -67,9 +69,10 @@ SRC_NAME =  			draw.c \
 						mlx_main_loop.c \
 						mlx_mouse_events.c \
 						set_hooks.c \
-						tga_error.c \
-						tga_load_file.c \
-						tga_process_file.c \
+						tga/tga_error.c \
+						tga/tga_load_file.c \
+						tga/tga_process_file.c \
+						tga/tga_process_pixels.c \
 						tools.c
 
 default: all
@@ -85,6 +88,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 $(OBJ_PATH):
 	@echo "$(GREEN)Creating ./obj path and making binaries from source files$(EOC)"
 	@mkdir $(OBJ_PATH)
+	@mkdir $(OBJ_PATH)/tga
+
 
 
 clean:
@@ -97,7 +102,7 @@ fclean: clean
 	@echo "$(GREEN)Deleting $(NAME) executable and config file$(EOC)"
 	@rm -rf $(NAME) ./config
 
-debug: debug_flag libft_debug all
+debug: debug_flag libft_debug mlx_debug all
 
 debug_asan: debug_flag debug_asan_flag libft_asan all
 
@@ -130,6 +135,10 @@ libft_fclean: libft_clean
 mlx:
 	@echo "$(GREEN)Compiling MLX library$(EOC)"
 	make -C $(MLX_PATH)/ all
+
+mlx_debug:
+	@echo "$(GREEN)Compiling MLX library with debug flag (-g)$(EOC)"
+	make -C $(MLX_PATH)/ debug all
 
 mlx_clean:
 	@echo "$(GREEN)Cleaning Minilibx folder$(EOC)"

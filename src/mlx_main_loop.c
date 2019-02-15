@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:44:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/12 16:45:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/15 16:39:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		mlx_main_loop(t_env *env)
 							env->mlx_window,\
 							5,\
 							5,\
-							0xffffff,\
+							0xff0000,\
 							env->target_file);
 	}
 	return (0);

@@ -6,12 +6,18 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 19:26:13 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/13 11:13:13 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/02/13 16:06:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# ifdef DEBUG_LIBFT
+#  define DEBUG_LIBFT_ENABLED 1
+# else
+#  define DEBUG_LIBFT_ENABLED	0
+# endif
 
 # include <stdlib.h>
 # include "get_next_line.h"

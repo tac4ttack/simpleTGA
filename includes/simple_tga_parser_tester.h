@@ -11,6 +11,24 @@
 #  include "linux_keys.h"
 # endif
 
+# ifdef DEBUG
+#  define DEBUG_TGA_TESTER 1
+# else
+#  define DEBUG_TGA_TESTER	0
+# endif
+
+// Used to print easily bits
+# define BYTE_TO_BINARY_PATTERN "%c %c %c %c %c %c %c %c"
+# define BYTE_TO_BINARY(byte)  \
+	(byte & 0x80 ? '1' : '0'), \
+	(byte & 0x40 ? '1' : '0'), \
+	(byte & 0x20 ? '1' : '0'), \
+	(byte & 0x10 ? '1' : '0'), \
+	(byte & 0x08 ? '1' : '0'), \
+	(byte & 0x04 ? '1' : '0'), \
+	(byte & 0x02 ? '1' : '0'), \
+	(byte & 0x01 ? '1' : '0')
+
 # define WIDTH  				800
 # define HEIGHT 				600
 # define DESTROYNOTIFY			17
@@ -19,8 +37,6 @@
 # define KEYPRESS				2
 # define KEYRELEASE				3
 
-
-
 typedef	struct			s_env
 {
 	void				*mlx_pointer;
@@ -28,7 +44,6 @@ typedef	struct			s_env
     t_key				*mlx_keys;
 	void				*frame_buffer_pointer;
 	int					*frame_buffer_data;
-	t_tga_header		target_tga;
 	void				*target_img_pointer;
 	unsigned int		*target_img_data;
 	int					target_img_size[2];
