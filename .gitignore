@@ -1,9 +1,10 @@
-# RTV1
 obj/
 simple-tga-parser
 libft/*.o
 .vscode
 .DS_Store
+show/
+log
 
 # Prerequisites
 *.d
