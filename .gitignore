@@ -1,6 +1,6 @@
 # RTV1
- obj/
-simple_tga_parser
+obj/
+simple-tga-parser
 libft/*.o
 .vscode
 .DS_Store
