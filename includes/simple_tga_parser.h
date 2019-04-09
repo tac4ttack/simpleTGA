@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/15 17:58:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/09 13:45:54 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,10 @@ unsigned int			*tga_load_file(const char *target, \
 void					*tga_process_file(const char *target, \
 											size_t *target_size);
 
-unsigned int			*tga_process_pixels(t_tga_info *tga, \
-											size_t *width, \
-											size_t *height);
+unsigned int			*tga_process_pixels(t_tga_info *tga);
 
-// void 					tga_process_pixels_32(unsigned int *buffer, \
-// 												size_t length);
+unsigned int			invert_pixel_alpha(const unsigned int target);
+void					invert_image_alpha(unsigned int *img, \
+											size_t width, size_t height);
 
 #endif

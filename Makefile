@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
-#    Updated: 2019/02/15 16:37:28 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/09 13:37:56 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC_NAME =  			draw.c \
 						tga/tga_load_file.c \
 						tga/tga_process_file.c \
 						tga/tga_process_pixels.c \
+						tga/tga_transform.c \
 						tools.c
 
 default: all
