@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:02:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/15 18:17:22 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:44:22 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,19 @@ unsigned int *tga_load_file(const char *target, size_t *width, size_t *height)
 		if (tga_fill_info(&tga, tga.data) != 0)
 			return (tga_error("Error during header decryption", tga.data));
 
-		// fprintf(stdout, "file_size = %zu\npixels_nbytes = %zu\nima_ori = %u\ndepth = %zu| w = %zu | h = %zu\n",
-		// 		tga.file_size, tga.pixels_nbytes, tga.image_origin, tga.depth, tga.width, tga.height);
 		tga_print_header(tga.header, target);
 
-		if (tga.header->image_type == TGA_TYPE_RAW_TC \
-			&& (tga.depth == 32 || tga.depth == 24 \
-				|| tga.depth == 16 || tga.depth == 8) \
-			&& tga.header->color_map_type == 0)
-			return (tga_process_pixels(&tga, width, height));
+		*width = tga.width;
+		*height = tga.height;
+
+		if (tga.header->image_type == TGA_TYPE_NODATA)
+			return (tga_error("No image data in TGA file!", tga.data));
+		else if (tga.header->image_type == TGA_TYPE_RAW_TC \
+				|| tga.header->image_type == TGA_TYPE_RAW_BW)
+			return (tga_process_pixels(&tga));
 		else
 			return (tga_error("File is not a TGA RAW TRUECOLOR", tga.data));
+		// rajouter les transformations?
 	}
 	return NULL;
 }
