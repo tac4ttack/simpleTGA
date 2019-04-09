@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:37:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/12 10:16:45 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/09 15:24:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	mlx_key_press(int key, t_env *env)
 	(key == K_G ? env->mlx_keys->k_g = 1 : 0);
 	(key == K_H ? env->mlx_keys->k_h = 1 : 0);
 	(key == K_I ? env->mlx_keys->k_i = 1 : 0);
+	(key == K_I ? invert_image_alpha(env->target_img_data, \
+									env->target_img_size[0], \
+									env->target_img_size[1]) : 0);
 	(key == K_J ? env->mlx_keys->k_j = 1 : 0);
 	(key == K_K ? env->mlx_keys->k_k = 1 : 0);
 	(key == K_L ? env->mlx_keys->k_l = 1 : 0);

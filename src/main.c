@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:32:13 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/15 13:37:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:43:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		main(int ac, char **av)
 	else
 		if (!(env->target_img_pointer = mlx_xpm_file_to_image(env->mlx_pointer, "./tga_files/doge/doge.xpm", &env->target_img_size[0], &env->target_img_size[1])))
 			s_error("could not load xpm!", env);
+
 
 	if (set_mlx_hooks(env) != 0)
 		s_error("\x1b[2;31mCan't setup MLX hooks\x1b[0m", env);
