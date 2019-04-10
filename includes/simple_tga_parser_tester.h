@@ -36,6 +36,8 @@
 # define KEYRELEASEMASK			(1L<<1)
 # define KEYPRESS				2
 # define KEYRELEASE				3
+# define BG_COLOR				0x00ffabff
+# define TXT_COLOR				0x0000ff00
 
 typedef	struct			s_env
 {
@@ -54,6 +56,9 @@ typedef	struct			s_env
 	int					endian;
 }						t_env;
 
+unsigned int			invert_pixel_alpha(const unsigned int target);
+void					invert_image_alpha(unsigned int *img, \
+											size_t width, size_t height);
 int						get_top_left_corner_x(t_env *env);
 int						get_top_left_corner_y(t_env *env);
 int						init(t_env *env);

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:32:13 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/09 16:43:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/10 11:52:28 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int		main(int ac, char **av)
 
 		if (!(tga_pixels = tga_load_file(env->target_file,\
 										(size_t*)&env->target_img_size[0],\
-										(size_t*)&env->target_img_size[1])))
+										(size_t*)&env->target_img_size[1],
+										(size_t*)&env->bpp)))
 			s_error("Could not load target TGA!", env);
 
 		fprintf(stdout, "File loaded (w = %d | h = %d)\n", env->target_img_size[0], env->target_img_size[1]);
