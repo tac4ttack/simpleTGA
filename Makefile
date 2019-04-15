@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/09 13:37:56 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/15 17:27:33 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,11 +69,25 @@ SRC_NAME =  			draw.c \
 						mlx_main_loop.c \
 						mlx_mouse_events.c \
 						set_hooks.c \
+						tga/tga_blackwhite_8bpp.c \
+						tga/tga_colormapped_24bpp.c \
+						tga/tga_colormapped_32bpp.c \
 						tga/tga_error.c \
 						tga/tga_load_file.c \
+						tga/tga_process_rle_packet.c \
 						tga/tga_process_file.c \
 						tga/tga_process_pixels.c \
+						tga/tga_process_rawbw.c \
+						tga/tga_process_rawcm.c \
+						tga/tga_process_rawtc.c \
+						tga/tga_process_rlebw.c \
+						tga/tga_process_rlecm.c \
+						tga/tga_process_rletc.c \
 						tga/tga_transform.c \
+						tga/tga_truecolor_15bpp.c \
+						tga/tga_truecolor_16bpp.c \
+						tga/tga_truecolor_24bpp.c \
+						tga/tga_truecolor_32bpp.c \
 						tools.c
 
 default: all
@@ -83,7 +97,8 @@ all: libft mlx $(NAME)
 $(NAME): $(SRC) $(OBJ_PATH) $(OBJ)
 	@echo "$(GREEN)Compiling $(NAME) with $(OS_NAME) MLX version$(EOC)"
 	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(MLX) $(MLXFLAGS) $(LIBMATHFLAGS)
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/*.h
 	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) -I $(MLX_PATH) $(KEYS)
 
 $(OBJ_PATH):
