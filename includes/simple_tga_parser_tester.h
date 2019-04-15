@@ -40,7 +40,7 @@
 # define BG_COLOR				0x00FFABFF
 # define TXT_COLOR				0x00CDFF00
 
-// char	tga_info[512];
+char	tga_info[512];
 
 typedef	struct			s_env
 {

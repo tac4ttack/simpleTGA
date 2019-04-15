@@ -6,55 +6,55 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:02:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/15 18:16:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:34:44 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser.h"
 #include "simple_tga_parser_tester.h"
 
-// void tga_print_header(t_tga_header *header, const char *target)
-// {
-// 	fprintf(stdout,
-// 			"\nTGA HEADER (%s) =\n"
-// 			"\tid_len = %hhd\n\tcm_type = %hhd\n\timg_type = %hhd"
-// 			"\n\tcm_first_entry = %hu\n\tcm_length = %hu\n"
-// 			"\tcm_bpp = %hhu\n\tx_origin = %hu\n\ty_origin = "
-// 			"%hu\n\timage_width = %hu\n\timage_height = %hu\n"
-// 			"\tpixel_depth = %hhu\n\n\timage_descriptor_bits = %c%c%c%c%c%c%c%c\n\n",
-// 			target,
-// 			header->id_len,
-// 			header->cm_type,
-// 			header->img_type,
-// 			header->cm_first_entry,
-// 			header->cm_length,
-// 			header->cm_bpp,
-// 			header->x_origin,
-// 			header->y_origin,
-// 			header->image_width,
-// 			header->image_heigth,
-// 			header->pixel_depth,
-// 			BYTE_TO_BINARY(header->image_descriptor));
+void tga_print_header(t_tga_header *header, const char *target)
+{
+	fprintf(stdout,
+			"\nTGA HEADER (%s) =\n"
+			"\tid_len = %hhd\n\tcm_type = %hhd\n\timg_type = %hhd"
+			"\n\tcm_first_entry = %hu\n\tcm_length = %hu\n"
+			"\tcm_bpp = %hhu\n\tx_origin = %hu\n\ty_origin = "
+			"%hu\n\timage_width = %hu\n\timage_height = %hu\n"
+			"\tpixel_depth = %hhu\n\n\timage_descriptor_bits = %c%c%c%c%c%c%c%c\n\n",
+			target,
+			header->id_len,
+			header->cm_type,
+			header->img_type,
+			header->cm_first_entry,
+			header->cm_length,
+			header->cm_bpp,
+			header->x_origin,
+			header->y_origin,
+			header->image_width,
+			header->image_heigth,
+			header->pixel_depth,
+			BYTE_TO_BINARY(header->image_descriptor));
 
-// 			sprintf(tga_info,
-// 			"\tid_len = %hhd\n\tcm_type = %hhd\n\timg_type = %hhd"
-// 			"\n\tcm_first_entry = %hu\n\tcm_length = %hu\n"
-// 			"\tcm_bpp = %hhu\n\tx_origin = %hu\n\ty_origin = "
-// 			"%hu\n\timage_width = %hu\n\timage_height = %hu\n"
-// 			"\tpixel_depth = %hhu\n\timage_descriptor_bits = %c%c%c%c%c%c%c%c\n\n",
-// 			header->id_len,
-// 			header->cm_type,
-// 			header->img_type,
-// 			header->cm_first_entry,
-// 			header->cm_length,
-// 			header->cm_bpp,
-// 			header->x_origin,
-// 			header->y_origin,
-// 			header->image_width,
-// 			header->image_heigth,
-// 			header->pixel_depth,
-// 			BYTE_TO_BINARY(header->image_descriptor));
-// }
+			sprintf(tga_info,
+			"\tid_len = %hhd\n\tcm_type = %hhd\n\timg_type = %hhd"
+			"\n\tcm_first_entry = %hu\n\tcm_length = %hu\n"
+			"\tcm_bpp = %hhu\n\tx_origin = %hu\n\ty_origin = "
+			"%hu\n\timage_width = %hu\n\timage_height = %hu\n"
+			"\tpixel_depth = %hhu\n\timage_descriptor_bits = %c%c%c%c%c%c%c%c\n\n",
+			header->id_len,
+			header->cm_type,
+			header->img_type,
+			header->cm_first_entry,
+			header->cm_length,
+			header->cm_bpp,
+			header->x_origin,
+			header->y_origin,
+			header->image_width,
+			header->image_heigth,
+			header->pixel_depth,
+			BYTE_TO_BINARY(header->image_descriptor));
+}
 
 static unsigned short tga_get_origin(const unsigned char descriptor)
 {
@@ -113,7 +113,7 @@ unsigned int *tga_load_file(const char *target, \
 			return (tga_error("Error during header decryption", tga.data));
 
 		// DEBUGGING
-		// tga_print_header(tga.header, target);
+		tga_print_header(tga.header, target);
 
 		*width = (width ? tga.width : 0);
 		*height = (height ? tga.height : 0);

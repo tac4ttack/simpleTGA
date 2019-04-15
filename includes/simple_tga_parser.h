@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/15 17:28:36 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:34:25 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct			s_tga_header
 	unsigned short		image_heigth;
 	unsigned char		pixel_depth;
 	unsigned char		image_descriptor;
-	char				end_padding[3];	// inutile si pragma pack?
+	// char				end_padding[3];	// inutile si pragma pack?
 }						t_tga_header;
 # pragma pack(pop)
 
