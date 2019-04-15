@@ -30,14 +30,17 @@
 	(byte & 0x01 ? '1' : '0')
 
 # define WIDTH  				800
+# define WIDTH_OFF				400
 # define HEIGHT 				600
 # define DESTROYNOTIFY			17
 # define KEYPRESSMASK			(1L<<0)
 # define KEYRELEASEMASK			(1L<<1)
 # define KEYPRESS				2
 # define KEYRELEASE				3
-# define BG_COLOR				0x00ffabff
-# define TXT_COLOR				0x0000ff00
+# define BG_COLOR				0x00FFABFF
+# define TXT_COLOR				0x00CDFF00
+
+// char	tga_info[512];
 
 typedef	struct			s_env
 {
@@ -54,6 +57,7 @@ typedef	struct			s_env
 	int					bpp;
 	int					size_line;
 	int					endian;
+	char				tga_info[512];
 }						t_env;
 
 unsigned int			invert_pixel_alpha(const unsigned int target);
