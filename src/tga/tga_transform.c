@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:09:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/09 13:47:33 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/10 15:30:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ unsigned int	invert_pixel_alpha(const unsigned int target)
 {
 	int 		result;
 
-	return (result = (((target & 0x000000ff)) | \
-			((target & 0x0000ff00)) | \
-			((target & 0x00ff0000)) | \
+	return (result = (((target & 0x000000ff)) + \
+			((target & 0x0000ff00)) + \
+			((target & 0x00ff0000)) + \
 			((255 - target & 0xff000000))));
 }
 
@@ -32,9 +32,9 @@ void			invert_image_alpha(unsigned int *img, \
 	{
 		while (i < width * height)
 		{
-			img[i] =  (((img[i] & 0x000000ff)) | \
-						((img[i] & 0x0000ff00)) | \
-						((img[i] & 0x00ff0000)) | \
+			img[i] =  (((img[i] & 0x000000ff)) + \
+						((img[i] & 0x0000ff00)) + \
+						((img[i] & 0x00ff0000)) + \
 						((255 - img[i] & 0xff000000)));
 		i++;
 		}
