@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tga_blackwhite_16bpp.c                             :+:      :+:    :+:   */
+/*   _tga_blackwhite_16bpp.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:21:32 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 15:56:20 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 17:49:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser.h"
+
+
+ // OBOSOLETTEEEEE! SE BASER  SUR LES NOUVELLES VERSIONS RETOURNANT DES BOOLS!!!
 
 void 				tga_blackwhite_16bpp_single(t_tga *tga, \
 												unsigned int *pixels, \

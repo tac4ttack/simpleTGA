@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 14:53:20 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:40:32 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>    // required for read()
 # include <stdio.h>     // required for printf()
 # include <string.h>    // required for bzero()
+# include <stdbool.h>	// required for bool type
 
 # ifdef DEBUG
 #  define DEBUG_TGA 1
@@ -61,8 +62,9 @@ typedef struct			s_tga_header
 
 typedef struct			s_tga
 {
-	void				*data;
 	t_tga_header		*header;
+	void				*data;
+	unsigned int		*pixels;
 	size_t				file_size;
 	unsigned short		image_origin;
 	size_t				depth;
@@ -79,79 +81,70 @@ typedef struct			s_tga
 /*
 **	Will return NULL if failed, plus it will try to output on the stderr
 */
-unsigned int			*tga_load_file(const char *target, size_t *width, \
-										size_t *height, \
-										size_t *bpp);
+t_tga					*tga_load_file(const char *target);
+bool					tga_clean(t_tga *tga);
 
-void					*tga_error(const char *message, void *trash);
+void					*tga_error(const char *message, t_tga *trash);
+bool					tga_berror(const char *message, t_tga *trash);
 
 void					*tga_process_file(const char *target,
 											size_t *target_size);
 
-unsigned int			*tga_process_pixels(t_tga *tga);
+bool					tga_process_pixels(t_tga *tga);
 
-void					tga_process_rawbw(t_tga *tga, unsigned int *pixels);
+bool					tga_process_rawbw(t_tga *tga);
 
-void					tga_process_rawcm(t_tga *tga, unsigned int *pixels);
+bool					tga_process_rawcm(t_tga *tga);
 
-void					tga_process_rawtc(t_tga *tga, unsigned int *pixels);
+bool					tga_process_rawtc(t_tga *tga);
 
-void					tga_process_raw_packet(t_tga *tga, \
-												unsigned int *pixels, \
-												size_t cursors[3]);
+bool					tga_process_raw_packet(t_tga *tga, size_t cursors[3]);
 
-void					tga_process_rle_packet(t_tga *tga, \
-												unsigned int *pixels, \
-												size_t cursors[3]);
+bool					tga_process_rle_packet(t_tga *tga, size_t cursors[3]);
 
-void					tga_process_rlebw(t_tga *tga, unsigned int *pixels);
+bool					tga_process_rlebw(t_tga *tga);
 
-void					tga_process_rlecm(t_tga *tga, unsigned int *pixels);
+bool					tga_process_rlecm(t_tga *tga);
 
-void					tga_process_rletc(t_tga *tga, unsigned int *pixels);
+bool					tga_process_rletc(t_tga *tga);
 
-void	 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *pixels);
+bool	 				tga_blackwhite_8bpp(t_tga *tga);
 
-void					tga_colormapped_8bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_colormapped_8bpp(t_tga *tga);
 
-void					tga_colormapped_15bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_colormapped_15bpp(t_tga *tga);
 
-void					tga_colormapped_16bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_colormapped_16bpp(t_tga *tga);
 
-void					tga_colormapped_24bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_colormapped_24bpp(t_tga *tga);
 
-void					tga_colormapped_32bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_colormapped_32bpp(t_tga *tga);
 
-void					tga_truecolor_15bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_truecolor_15bpp(t_tga *tga);
 
-void					tga_truecolor_16bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_truecolor_16bpp(t_tga *tga);
 
-void					tga_truecolor_24bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_truecolor_24bpp(t_tga *tga);
 
-void					tga_truecolor_32bpp(t_tga *tga, unsigned int *pixels);
+bool					tga_truecolor_32bpp(t_tga *tga);
 
-void	 				tga_blackwhite_8bpp_single(t_tga *tga, \
-													unsigned int *pixels, \
+bool	 				tga_blackwhite_8bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_15bpp_single(t_tga *tga, \
-													unsigned int *pixels, \
+bool					tga_truecolor_15bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_16bpp_single(t_tga *tga, \
-													unsigned int *pixels, \
+bool					tga_truecolor_16bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_24bpp_single(t_tga *tga, \
-													unsigned int *pixels, \
+bool					tga_truecolor_24bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_32bpp_single(t_tga *tga, \
-													unsigned int *pixels, \
+bool					tga_truecolor_32bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 

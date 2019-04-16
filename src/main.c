@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:32:13 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/15 18:04:11 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:55:05 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 int		main(int ac, char **av)
 {
 	t_env			*env = NULL;
-	unsigned int	*tga_pixels = NULL;
+
+
+	// while (1)
+	// 	fprintf(stdout, "ATTENTION TU DOIS FIX LE PARSING DE PIXELS, \
+	// 			TU FAIS TROP DARITMETIK DE POINTTEUREE URH URH", NULL);
 
 	if (!(env = malloc(sizeof(t_env))))
 		s_error("\x1b[2;31mCan't allocate memory for environment\x1b[0m", NULL);
@@ -29,19 +33,21 @@ int		main(int ac, char **av)
 	{
 		env->target_file = ft_strdup(av[1]);
 
-		if (!(tga_pixels = tga_load_file(env->target_file,\
-										(size_t*)&env->target_img_size[0],\
-										(size_t*)&env->target_img_size[1],
-										(size_t*)&env->bpp)))
+		if (!(env->tga = tga_load_file(env->target_file)))
 			s_error("Could not load target TGA!", env);
 
+		while (1)
+			;
+
+		env->target_img_size[0] = env->tga->width;
+		env->target_img_size[1] = env->tga->height;
 		fprintf(stdout, "File loaded (w = %d | h = %d)\n", env->target_img_size[0], env->target_img_size[1]);
 
 		if (!(env->target_img_pointer = mlx_new_image(
 					env->mlx_pointer,
 					env->target_img_size[0],
 					env->target_img_size[1])))
-			s_error("Could not load create buffer for target", env);
+			s_error("Could not load create buffer for target TGA", env);
 
 		env->target_img_data = (unsigned int *)mlx_get_data_addr(
 												env->target_img_pointer,\
@@ -49,13 +55,12 @@ int		main(int ac, char **av)
 												&env->size_line,\
 												&env->endian);
 
-		memcpy(env->target_img_data, tga_pixels,\
+		memcpy(env->target_img_data, env->tga->pixels,\
 				(env->target_img_size[0] * env->target_img_size[1] * 4));
 	}
 	else
-		if (!(env->target_img_pointer = mlx_xpm_file_to_image(env->mlx_pointer, "./tga_files/doge/doge.xpm", &env->target_img_size[0], &env->target_img_size[1])))
+		if (!(env->target_img_pointer = mlx_xpm_file_to_image(env->mlx_pointer, "./doge.xpm", &env->target_img_size[0], &env->target_img_size[1])))
 			s_error("could not load xpm!", env);
-
 
 	if (set_mlx_hooks(env) != 0)
 		s_error("\x1b[2;31mCan't setup MLX hooks\x1b[0m", env);

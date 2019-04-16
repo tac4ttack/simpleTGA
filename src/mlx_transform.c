@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tga_transform.c                                    :+:      :+:    :+:   */
+/*   mlx_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:09:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/10 15:30:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 17:45:56 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ unsigned int	invert_pixel_alpha(const unsigned int target)
 			((255 - target & 0xff000000))));
 }
 
-void			invert_image_alpha(unsigned int *img, \
-											size_t width, size_t height)
+void			invert_image_alpha(unsigned int *img, size_t width, size_t height)
 {
 	size_t 		i;
 

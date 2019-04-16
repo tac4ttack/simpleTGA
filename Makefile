@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/16 14:54:29 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/16 17:45:42 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC_NAME =  			draw.c \
 						mlx_key_release.c \
 						mlx_main_loop.c \
 						mlx_mouse_events.c \
+						mlx_transform.c \
 						set_hooks.c \
 						tga/tga_blackwhite_8bpp.c \
 						tga/tga_colormapped_8bpp.c \
@@ -86,7 +87,6 @@ SRC_NAME =  			draw.c \
 						tga/tga_process_rlebw.c \
 						tga/tga_process_rlecm.c \
 						tga/tga_process_rletc.c \
-						tga/tga_transform.c \
 						tga/tga_truecolor_15bpp.c \
 						tga/tga_truecolor_16bpp.c \
 						tga/tga_truecolor_24bpp.c \

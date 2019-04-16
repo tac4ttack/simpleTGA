@@ -47,6 +47,7 @@ typedef	struct			s_env
 	void				*mlx_pointer;
 	void				*mlx_window;
     t_key				*mlx_keys;
+	t_tga				*tga;
 	void				*frame_buffer_pointer;
 	int					*frame_buffer_data;
 	void				*target_img_pointer;

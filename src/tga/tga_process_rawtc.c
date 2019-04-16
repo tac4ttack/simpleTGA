@@ -6,23 +6,26 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:23:01 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 15:06:02 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:09:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser.h"
 
-void	tga_process_rawtc(t_tga *tga, unsigned int *pixels)
+bool	tga_process_rawtc(t_tga *tga)
 {
-	if (tga && pixels)
+	if (tga)
 	{
 		if (tga->depth == 15)
-			tga_truecolor_15bpp(tga, pixels);
+			return (tga_truecolor_15bpp(tga));
 		else if (tga->depth == 16)
-			tga_truecolor_16bpp(tga, pixels);
+			return (tga_truecolor_16bpp(tga));
 		else if (tga->depth == 24)
-			tga_truecolor_24bpp(tga, pixels);
+			return (tga_truecolor_24bpp(tga));
 		else if (tga->depth == 32)
-			tga_truecolor_32bpp(tga, pixels);
+			return (tga_truecolor_32bpp(tga));
+		else
+			return (tga_berror("Invalid pixel depth for RAW TC format!", tga));
 	}
+	return (tga_berror("NULL TGA pointer in tga_process_rawtc()!", tga));
 }

@@ -6,18 +6,18 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:23:01 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 15:06:41 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:10:18 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser.h"
 
-void				tga_process_rletc(t_tga *tga, unsigned int *pixels)
+bool			tga_process_rletc(t_tga *tga)
 {
 	unsigned char	*iterator;
 	size_t			cursors[3];
 
-	if (tga && pixels)
+	if (tga)
 	{
 		iterator = (unsigned char*)(tga->data + tga->data_offset);
 		cursors[0] = 0;
@@ -26,9 +26,17 @@ void				tga_process_rletc(t_tga *tga, unsigned int *pixels)
 		{
 			cursors[2] = (iterator[cursors[1]] & 0x7F) + 1;
 			if ((iterator[cursors[1]++] & 0x80) == 0x80)
-				tga_process_rle_packet(tga, pixels, cursors);
+				{
+					if (!(tga_process_rle_packet(tga, cursors)))
+						return (tga_berror("Failed parsing RLE packet!", tga));
+				}
 			else
-				tga_process_raw_packet(tga, pixels, cursors);
+				{
+					if (!(tga_process_raw_packet(tga, cursors)))
+						return (tga_berror("Failed parsing RAW RLE packet!", tga));
+				}
 		}
+		return (true);
 	}
+	return (tga_berror("Parsing RLE TC format failed!", tga));
 }

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:31:06 by fmessina          #+#    #+#             */
-/*   Updated: 2019/02/15 13:26:31 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:56:23 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,20 @@ void flush(t_env *env)
 				env->target_img_data,
 				env->target_file);
 
+	if (env->frame_buffer_data)
+	{
+		if (DEBUG_TGA_TESTER)
+			fprintf(stdout, "\nfreeing frame_buffer_data\n", NULL);
+		free(env->frame_buffer_data);
+		env->frame_buffer_data = NULL;
+	}
 	if (env->frame_buffer_pointer)
 	{
 		if (DEBUG_TGA_TESTER)
 			fprintf(stdout, "\nfreeing frame_buffer_pointer (mlx_destroy_image)\n", NULL);
 		mlx_destroy_image(env->mlx_pointer, env->frame_buffer_pointer);
 	}
+
 	if (env->mlx_keys)
 	{
 		if (DEBUG_TGA_TESTER)
@@ -72,6 +80,12 @@ void flush(t_env *env)
 		free(env->target_file);
 		env->target_file = NULL;
 	}
+	if (env->tga)
+	{
+		if (DEBUG_TGA_TESTER)
+			fprintf(stdout, "freeing tga file\n", NULL);
+		tga_clean(env->tga);
+	}
 	if (env)
 	{
 		if (DEBUG_TGA_TESTER)
@@ -86,8 +100,8 @@ void s_error(char *str, t_env *e)
 	ft_putendl("\n\x1b[2;31mOh no I just crashed!\x1b[0m");
 	ft_putendl(str);
 	flush(e);
-	// while (1)
-	// 	;
+	while (1)
+		;
 	exit(EXIT_FAILURE);
 }
 
@@ -96,8 +110,8 @@ int quit(t_env *e)
 	if (e)
 		flush(e);
 	ft_putendl("Exiting");
-	// while (1)
-	// 	;
+	while (1)
+		;
 	exit(EXIT_SUCCESS);
 	return (0);
 }
