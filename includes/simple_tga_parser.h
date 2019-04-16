@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/15 18:34:25 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 14:53:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,122 +53,105 @@ typedef struct			s_tga_header
 	unsigned short		y_origin;
 	unsigned short		image_width;
 	unsigned short		image_heigth;
-	unsigned char		pixel_depth;
+	unsigned char		bpp;
 	unsigned char		image_descriptor;
 	// char				end_padding[3];	// inutile si pragma pack?
 }						t_tga_header;
 # pragma pack(pop)
 
-typedef struct			s_tga_info
+typedef struct			s_tga
 {
 	void				*data;
-	unsigned int		*pixels;
 	t_tga_header		*header;
 	size_t				file_size;
-	size_t				pixels_nbytes;
 	unsigned short		image_origin;
 	size_t				depth;
 	size_t				width;
 	size_t				height;
-	unsigned short		image_attributes;
 	int					data_offset;
 	int					extension_offset;
 	int					developer_offset;
 	char				*signature;
 	char				*id;
-}						t_tga_info;
+}						t_tga;
 
 
 /*
 **	Will return NULL if failed, plus it will try to output on the stderr
 */
-unsigned int			*tga_load_file(const char *target, \
-										size_t *width, \
-										size_t *height,
+unsigned int			*tga_load_file(const char *target, size_t *width, \
+										size_t *height, \
 										size_t *bpp);
 
 void					*tga_error(const char *message, void *trash);
 
-void					*tga_process_file(const char *target, \
+void					*tga_process_file(const char *target,
 											size_t *target_size);
 
-unsigned int			*tga_process_pixels(t_tga_info *tga);
+unsigned int			*tga_process_pixels(t_tga *tga);
 
-void					tga_process_rawbw(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_process_rawbw(t_tga *tga, unsigned int *pixels);
 
-void					tga_process_rawcm(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_process_rawcm(t_tga *tga, unsigned int *pixels);
 
-void					tga_process_rawtc(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_process_rawtc(t_tga *tga, unsigned int *pixels);
 
-void					tga_process_raw_packet(t_tga_info *tga, \
-												unsigned int *pix_data, \
+void					tga_process_raw_packet(t_tga *tga, \
+												unsigned int *pixels, \
 												size_t cursors[3]);
 
-void					tga_process_rle_packet(t_tga_info *tga, \
-												unsigned int *pix_data, \
+void					tga_process_rle_packet(t_tga *tga, \
+												unsigned int *pixels, \
 												size_t cursors[3]);
 
-void					tga_process_rlebw(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_process_rlebw(t_tga *tga, unsigned int *pixels);
 
-void					tga_process_rlecm(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_process_rlecm(t_tga *tga, unsigned int *pixels);
 
-void					tga_process_rletc(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_process_rletc(t_tga *tga, unsigned int *pixels);
 
-void	 				tga_blackwhite_8bpp(t_tga_info *tga, \
-											unsigned int *pix_data);
+void	 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *pixels);
 
-// void					tga_colormapped_15bpp(t_tga_info *tga, \
-// 												unsigned int *pix_data);
+void					tga_colormapped_8bpp(t_tga *tga, unsigned int *pixels);
 
-// void					tga_colormapped_16bpp(t_tga_info *tga, \
-// 												unsigned int *pix_data);
+void					tga_colormapped_15bpp(t_tga *tga, unsigned int *pixels);
 
-void					tga_colormapped_24bpp(t_tga_info *tga, \
-												unsigned int *pix_data);
+void					tga_colormapped_16bpp(t_tga *tga, unsigned int *pixels);
 
-void					tga_colormapped_32bpp(t_tga_info *tga, \
-												unsigned int *pix_data);
+void					tga_colormapped_24bpp(t_tga *tga, unsigned int *pixels);
 
-void					tga_truecolor_15bpp(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_colormapped_32bpp(t_tga *tga, unsigned int *pixels);
 
-void					tga_truecolor_16bpp(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_truecolor_15bpp(t_tga *tga, unsigned int *pixels);
 
-void					tga_truecolor_24bpp(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_truecolor_16bpp(t_tga *tga, unsigned int *pixels);
 
-void					tga_truecolor_32bpp(t_tga_info *tga, \
-											unsigned int *pix_data);
+void					tga_truecolor_24bpp(t_tga *tga, unsigned int *pixels);
 
-void	 				tga_blackwhite_8bpp_single(t_tga_info *tga, \
-													unsigned int *pix_data, \
+void					tga_truecolor_32bpp(t_tga *tga, unsigned int *pixels);
+
+void	 				tga_blackwhite_8bpp_single(t_tga *tga, \
+													unsigned int *pixels, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_15bpp_single(t_tga_info *tga, \
-													unsigned int *pix_data, \
+void					tga_truecolor_15bpp_single(t_tga *tga, \
+													unsigned int *pixels, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_16bpp_single(t_tga_info *tga, \
-													unsigned int *pix_data, \
+void					tga_truecolor_16bpp_single(t_tga *tga, \
+													unsigned int *pixels, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_24bpp_single(t_tga_info *tga, \
-													unsigned int *pix_data, \
+void					tga_truecolor_24bpp_single(t_tga *tga, \
+													unsigned int *pixels, \
 													const int dst, \
 													const int src);
 
-void					tga_truecolor_32bpp_single(t_tga_info *tga, \
-													unsigned int *pix_data, \
+void					tga_truecolor_32bpp_single(t_tga *tga, \
+													unsigned int *pixels, \
 													const int dst, \
 													const int src);
 

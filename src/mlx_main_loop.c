@@ -6,18 +6,23 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:44:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/15 18:33:28 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:06:02 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser_tester.h"
 
-static void print_tga_info(t_env *env)
+static void print_tga(t_env *env)
 {
 	char **split = ft_strsplit(tga_info, '\n');
+	char **tmp = split;
 	int i = 0;
 	while (*split)
-		mlx_string_put(env->mlx_pointer, env->mlx_window, WIDTH + 10, 20 * i++, TXT_COLOR, *split++);
+	{
+		mlx_string_put(env->mlx_pointer, env->mlx_window, WIDTH + 10, 50 + 20 * i++, TXT_COLOR, *split);
+		ft_memdel((void**)split++);
+	}
+	ft_memdel((void**)(&tmp));
 }
 
 int		mlx_main_loop(t_env *env)
@@ -40,7 +45,7 @@ int		mlx_main_loop(t_env *env)
 		{
 			mlx_string_put(env->mlx_pointer, env->mlx_window, 5, 5,	TXT_COLOR, \
 							env->target_file);
-			print_tga_info(env);
+			print_tga(env);
 		}
 		else
 			mlx_string_put(env->mlx_pointer, env->mlx_window, 5, 5, TXT_COLOR, \

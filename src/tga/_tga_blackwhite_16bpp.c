@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tga_truecolor_32bpp.c                              :+:      :+:    :+:   */
+/*   tga_blackwhite_16bpp.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 13:38:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 15:48:02 by fmessina         ###   ########.fr       */
+/*   Created: 2019/04/11 12:21:32 by fmessina          #+#    #+#             */
+/*   Updated: 2019/04/16 15:56:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser.h"
 
-void 				tga_truecolor_32bpp_single(t_tga *tga, \
+void 				tga_blackwhite_16bpp_single(t_tga *tga, \
 												unsigned int *pixels, \
 												const int dst, \
 												const int src)
 {
 	unsigned char	*it;
 	if (dst == 0)
-		fprintf(stdout, "debug -> tga_truecolor_32bpp_single()\n", NULL);
+		fprintf(stdout, "debug -> tga_truecolor_8bpp_single()\n", NULL);
 	it = (unsigned char *)(tga->data + tga->data_offset);
-	pixels[dst] = ((it[src + 3] << 24) \
-					| (it[src + 2] << 16) \
-					| (it[src + 1] << 8) \
-					| (it[src]));
+	pixels[dst] = ((0xFF) << 24)  \
+				| ((it[src] & 0xFF) << 16) \
+				| ((it[src] & 0xFF) << 8)
+				| ((it[src] & 0xFF));
 }
 
-void 				tga_truecolor_32bpp(t_tga *tga, unsigned int *pixels)
+void 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *pixels)
 {
 	size_t			i;
-	unsigned int	*it;
-	fprintf(stdout, "debug -> tga_truecolor_32bpp()\n", NULL);
+	unsigned char	*it;
+	fprintf(stdout, "debug -> tga_truecolor_8bpp()\n", NULL);
 	i = 0;
-	it = (unsigned int *)(tga->data + tga->data_offset);
+	it = (unsigned char *)(tga->data + tga->data_offset);
 	while (i < tga->width * tga->height)
 	{
-		pixels[i] = it[i];
+		pixels[i] = ((0xFF) << 24)  \
+					| ((it[i] & 0xFF) << 16) \
+					| ((it[i] & 0xFF) << 8)
+					| ((it[i] & 0xFF));
 		i++;
 	}
 }

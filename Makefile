@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 14:10:36 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/15 17:27:33 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/16 14:54:29 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,9 @@ SRC_NAME =  			draw.c \
 						mlx_mouse_events.c \
 						set_hooks.c \
 						tga/tga_blackwhite_8bpp.c \
+						tga/tga_colormapped_8bpp.c \
+						tga/tga_colormapped_15bpp.c \
+						tga/tga_colormapped_16bpp.c \
 						tga/tga_colormapped_24bpp.c \
 						tga/tga_colormapped_32bpp.c \
 						tga/tga_error.c \
