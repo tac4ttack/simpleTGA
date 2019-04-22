@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:02:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 18:43:19 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:24:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_tga 		*tga_load_file(const char *target)
 	tga = NULL;
 	if (target)
 	{
-		if (!(tga = malloc(sizeof(t_tga))))
+		if (!(tga = (t_tga*)malloc(sizeof(t_tga))))
 			return (tga_error("Can't allocate memory for TGA file!", NULL));
 		bzero((void*)tga, sizeof(t_tga));
 		if (!(tga->data = tga_process_file(target, &tga->file_size)))
