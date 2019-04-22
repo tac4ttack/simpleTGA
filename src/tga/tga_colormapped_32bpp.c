@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 11:00:08 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 17:54:51 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:18:57 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool				tga_colormapped_32bpp(t_tga *tga)
 	unsigned char	*it;
 	unsigned char	*cm;
 
-	fprintf(stdout, "debug -> tga_colormapped_32bpp()\n", NULL);
+	POP("tga_colormapped_32bpp()");
 
 	i = 0;
 	if (tga)

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:38:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 17:54:47 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:08:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool 				tga_truecolor_32bpp_single(t_tga *tga, \
 	unsigned char	*it;
 
 	if (dst == 0)
-		fprintf(stdout, "debug -> tga_truecolor_32bpp_single()\n", NULL);
+		POP("tga_truecolor_32bpp_single()");
 
 	if (tga)
 	{
@@ -38,7 +38,7 @@ bool 				tga_truecolor_32bpp(t_tga *tga)
 	size_t			i;
 	unsigned int	*it;
 
-	fprintf(stdout, "debug -> tga_truecolor_32bpp()\n", NULL);
+	POP("tga_truecolor_32bpp()");
 
 	i = 0;
 	if (tga)

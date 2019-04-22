@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:21:32 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 17:49:20 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:05:18 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void 				tga_blackwhite_16bpp_single(t_tga *tga, \
 {
 	unsigned char	*it;
 	if (dst == 0)
-		fprintf(stdout, "debug -> tga_truecolor_8bpp_single()\n", NULL);
+		POP("tga_truecolor_8bpp_single()");
 	it = (unsigned char *)(tga->data + tga->data_offset);
 	pixels[dst] = ((0xFF) << 24)  \
 				| ((it[src] & 0xFF) << 16) \
@@ -34,7 +34,7 @@ void 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *pixels)
 {
 	size_t			i;
 	unsigned char	*it;
-	fprintf(stdout, "debug -> tga_truecolor_8bpp()\n", NULL);
+	POP("tga_truecolor_8bpp()");
 	i = 0;
 	it = (unsigned char *)(tga->data + tga->data_offset);
 	while (i < tga->width * tga->height)
