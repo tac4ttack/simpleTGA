@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:46:22 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 18:56:48 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:19:50 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ int		init(t_env *env) {
 		if (!(env->mlx_window = mlx_new_window(env->mlx_pointer, WIDTH + WIDTH_OFF, HEIGHT,	"Just another simple TGA file parser")))
 			s_error("\x1b[2;31mCould not create application window\x1b[0m", NULL);
 
-
 		// BACKGROUND AKA FRAME_BUFFER
 		int bpp, row, endian;
-		if (!(env->frame_buffer_data = malloc(sizeof(int) * (WIDTH + WIDTH_OFF) * HEIGHT)))
-			s_error("\x1b[2;31mCould not allocate frame buffer\x1b[0m", NULL);
 		if (!(env->frame_buffer_pointer = mlx_new_image(env->mlx_pointer, (WIDTH + WIDTH_OFF), HEIGHT)))
 			s_error("\x1b[2;31mCould not create frame buffer\x1b[0m", NULL);
 		if (!(env->frame_buffer_data = (int*)mlx_get_data_addr(env->frame_buffer_pointer, &bpp, &row, &endian)))

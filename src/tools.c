@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 19:31:06 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 18:56:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:19:45 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,62 +34,63 @@ void flush(t_env *env)
 				env->target_img_data,
 				env->target_file);
 
-	if (env->frame_buffer_data)
-	{
-		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "\nfreeing frame_buffer_data\n", NULL);
-		free(env->frame_buffer_data);
-		env->frame_buffer_data = NULL;
-	}
 	if (env->frame_buffer_pointer)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "\nfreeing frame_buffer_pointer (mlx_destroy_image)\n", NULL);
+			POP("flush() | freeing frame_buffer_pointer (mlx_destroy_image)");
 		mlx_destroy_image(env->mlx_pointer, env->frame_buffer_pointer);
 	}
+
+	// if (env->frame_buffer_data)
+	// {
+	// 	if (DEBUG_TGA_TESTER)
+	// 		fprintf(stdout, "\nfreeing frame_buffer_data\n", NULL);
+	// 	free(env->frame_buffer_data);
+	// 	env->frame_buffer_data = NULL;
+	// }
 
 	if (env->mlx_keys)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "freeing mlx_keys\n", NULL);
+			POP("flush() | freeing mlx_keys");
 		free(env->mlx_keys);
 		env->mlx_keys = NULL;
 	}
 	if (env->target_img_pointer)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "freeing target_img_pointer (mlx_destroy_image)\n", NULL);
+			POP("flush() | freeing target_img_pointer (mlx_destroy_image)");
 		mlx_destroy_image(env->mlx_pointer, env->target_img_pointer);
 	}
 	if (env->mlx_window)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "freeing mlx_window (mlx_destroy_window)\n", NULL);
+			POP("flush() | freeing mlx_window (mlx_destroy_window)");
 		mlx_destroy_window(env->mlx_pointer, env->mlx_window);
 		if (env->mlx_pointer)
 		{
 			if (DEBUG_TGA_TESTER)
-				fprintf(stdout, "freeing mlx_pointer (mlx_del)\n", NULL);
+				POP("flush() | freeing mlx_pointer (mlx_del)");
 			mlx_del(env->mlx_pointer);
 		}
 	}
 	if (env->target_file)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "freeing target_file\n", NULL);
+			POP("flush() | freeing target_file");
 		free(env->target_file);
 		env->target_file = NULL;
 	}
 	if (env->tga)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "freeing tga file\n", NULL);
+			POP("flush() | freeing tga file");
 		tga_clean(env->tga);
 	}
 	if (env)
 	{
 		if (DEBUG_TGA_TESTER)
-			fprintf(stdout, "freeing env\n", NULL);
+			POP("flush() | freeing env");
 		free(env);
 		env = NULL;
 	}
@@ -100,8 +101,8 @@ void s_error(char *str, t_env *e)
 	ft_putendl("\n\x1b[2;31mOh no I just crashed!\x1b[0m");
 	ft_putendl(str);
 	flush(e);
-	while (1)
-		;
+	// while (1)
+	// 	;
 	exit(EXIT_FAILURE);
 }
 
@@ -110,8 +111,8 @@ int quit(t_env *e)
 	if (e)
 		flush(e);
 	ft_putendl("Exiting");
-	while (1)
-		;
+	// while (1)
+	// 	;
 	exit(EXIT_SUCCESS);
 	return (0);
 }
