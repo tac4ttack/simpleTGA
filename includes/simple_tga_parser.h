@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 18:40:32 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:02:22 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # else
 #  define DEBUG_TGA	0
 # endif
+
+# define POP(str)	fprintf(stdout, "debug -> %s\n", str); // REMOVE AFTER DEBUG!
 
 # define TGA_TYPE_NODATA 0
 # define TGA_TYPE_RAW_CM 1
