@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:38:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 17:54:31 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:16:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool 				tga_truecolor_16bpp_single(t_tga *tga, \
 	unsigned char	argb[4];
 
 	if (dst == 0)
-		fprintf(stdout, "debug -> tga_truecolor_16bpp_single()\n", NULL);
+		POP("tga_truecolor_16bpp_single()");
 
 	if (tga)
 	{
@@ -43,9 +43,7 @@ bool				tga_truecolor_16bpp(t_tga *tga)
 	size_t			i;
 	unsigned char	*it;
 	unsigned char	argb[4];
-
-	fprintf(stdout, "debug -> tga_truecolor_16bpp())\n", NULL);
-
+	POP("tga_truecolor_16bpp()");
 	i = 0;
 	if (tga)
 	{
@@ -59,9 +57,8 @@ bool				tga_truecolor_16bpp(t_tga *tga)
 			argb[1] = (argb[1] << 3) | (argb[1] >> 2);
 			argb[2] = (argb[2] << 3) | (argb[2] >> 2);
 			argb[3] = (argb[3] << 3) | (argb[3] >> 2);
-			*tga->pixels = (argb[0] << 24) | (argb[1] << 16) | (argb[2] << 8) | argb[3];
+			tga->pixels[i / 2] = (argb[0] << 24) | (argb[1] << 16) | (argb[2] << 8) | argb[3];
 			i += 2;
-			tga->pixels++;
 		}
 		return (true);
 	}

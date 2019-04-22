@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:38:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 17:54:42 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:16:50 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool 				tga_truecolor_15bpp_single(t_tga *tga, \
 	unsigned char	rgb[3];
 
 	if (dst == 0)
-		fprintf(stdout, "debug -> tga_truecolor_15bpp_single()\n", NULL);
+		POP("tga_truecolor_15bpp_single()");
 
 	if (tga)
 	{
@@ -44,7 +44,7 @@ bool				tga_truecolor_15bpp(t_tga *tga)
 	unsigned char	*it;
 	unsigned char	rgb[3];
 
-	fprintf(stdout, "debug -> tga_truecolor_15bpp()\n", NULL);
+	POP("tga_truecolor_15bpp()");
 
 	i = 0;
 	if (tga)
@@ -58,9 +58,8 @@ bool				tga_truecolor_15bpp(t_tga *tga)
 			rgb[0] = (rgb[0] << 3) | (rgb[0] >> 2);
 			rgb[1] = (rgb[1] << 3) | (rgb[1] >> 2);
 			rgb[2] = (rgb[2] << 3) | (rgb[2] >> 2);
-			*tga->pixels = (255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+			tga->pixels[i / 2] = (255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 			i += 2;
-			tga->pixels++;
 		}
 		return (true);
 	}
