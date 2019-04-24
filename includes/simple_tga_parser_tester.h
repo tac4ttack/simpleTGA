@@ -59,9 +59,9 @@ typedef	struct			s_env
 	int					size_line;
 	int					endian;
 	char				tga_info[512];
+	int					mouse_pos[2];
 }						t_env;
 
-unsigned int			invert_pixel_alpha(const unsigned int target);
 void					invert_image_alpha(unsigned int *img, \
 											size_t width, size_t height);
 int						get_top_left_corner_x(t_env *env);
