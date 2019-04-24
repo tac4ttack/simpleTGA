@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:02:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/24 11:45:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simpleTGA.h"
 
 static unsigned short tga_get_origin(const unsigned char descriptor)
 {

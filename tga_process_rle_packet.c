@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 09:43:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 18:06:07 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simpleTGA.h"
 
 static bool	rletc_get_pixel(t_tga *tga, const int dst, const int src)
 {

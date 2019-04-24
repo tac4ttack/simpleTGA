@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:03:00 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/16 18:41:30 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_tga_parser.h"
+#include "simpleTGA.h"
 
 static void memdel(void **ptr)
 {
