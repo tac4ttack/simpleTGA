@@ -6,22 +6,16 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:09:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/18 10:04:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:26:04 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simple_tga_parser.h"
+#include "simple_tga_parser_tester.h"
 
-unsigned int	invert_pixel_alpha(const unsigned int target)
+static unsigned int	invert_pixel_alpha(const unsigned int target)
 {
-	int 		result;
-
-	POP("invert_pixel_alpha()");
-
-	return (result = (((target & 0x000000ff)) + \
-			((target & 0x0000ff00)) + \
-			((target & 0x00ff0000)) + \
-			((255 - target & 0xff000000))));
+	return ((~target & 0xff000000) | (target & 0x00ffffff));
 }
 
 void			invert_image_alpha(unsigned int *img, size_t width, size_t height)
@@ -35,11 +29,8 @@ void			invert_image_alpha(unsigned int *img, size_t width, size_t height)
 	{
 		while (i < width * height)
 		{
-			img[i] =  (((img[i] & 0x000000ff)) + \
-						((img[i] & 0x0000ff00)) + \
-						((img[i] & 0x00ff0000)) + \
-						((255 - img[i] & 0xff000000)));
-		i++;
+			img[i] = invert_pixel_alpha(img[i]);
+			i++;
 		}
 	}
 }
