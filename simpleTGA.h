@@ -81,6 +81,7 @@ typedef struct			s_tga
 /*
 **	Will return NULL if failed, plus it will try to output on the stderr
 */
+unsigned int			*tga_get_pixel_ptr(const t_tga *target);
 t_tga					*tga_load_file(const char *target);
 bool					tga_clean(t_tga *tga);
 

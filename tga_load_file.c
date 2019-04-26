@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:02:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/26 10:05:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-static unsigned short tga_get_origin(const unsigned char descriptor)
+static unsigned short	tga_get_origin(const unsigned char descriptor)
 {
 	if (!(descriptor & 0x20) && !(descriptor & 0x10))
 		return (TGA_IMG_ORI_BL);
@@ -26,7 +26,7 @@ static unsigned short tga_get_origin(const unsigned char descriptor)
 		return (-1);
 }
 
-static bool tga_fill_info(t_tga *tga, void *data)
+static bool				tga_fill_info(t_tga *tga, void *data)
 {
 	if (tga && data)
 	{
@@ -50,7 +50,7 @@ static bool tga_fill_info(t_tga *tga, void *data)
 	return (tga_berror("NULL pointers in tga_fill_info()!", NULL));
 }
 
-bool		tga_clean(t_tga *tga)
+bool					tga_clean(t_tga *tga)
 {
 	if (tga)
 	{
@@ -67,7 +67,12 @@ bool		tga_clean(t_tga *tga)
 	return (false);
 }
 
-t_tga 		*tga_load_file(const char *target)
+unsigned int			*tga_get_pixel_ptr(const t_tga *target)
+{
+	return (target->pixels);
+}
+
+t_tga					*tga_load_file(const char *target)
 {
 	t_tga	*tga;
 
