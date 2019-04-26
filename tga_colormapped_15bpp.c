@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:54:47 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/26 11:19:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-bool				tga_colormapped_15bpp(t_tga *tga)
+bool				tga_colormapped_15bpp(t_tga *tga, unsigned int *dst)
 {
 	size_t			i;
 	unsigned char	*it;
@@ -30,12 +30,12 @@ bool				tga_colormapped_15bpp(t_tga *tga)
 			rgb[1] = ((cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] << 3) & 0x1C) \
 						| ((cm[(it[i] * (tga->header->cm_bpp >> 3))] >> 5) & 0x07);
 			rgb[2] = (cm[(it[i] * (tga->header->cm_bpp >> 3))] & 0x1F);
-			*tga->pixels = (255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+			*dst = (255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 			i += (tga->header->bpp >> 3);
-			tga->pixels++;
+			dst++;
 		}
 		return (true);
 	}
-	return (tga_berror("NULL TGA pointer in CM15!", tga));
+	return (tga_berror("NULL parameter in CM15!", tga));
 }
 

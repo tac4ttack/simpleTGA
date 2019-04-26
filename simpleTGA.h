@@ -109,25 +109,25 @@ bool					tga_process_rlecm(t_tga *tga);
 
 bool					tga_process_rletc(t_tga *tga);
 
-bool	 				tga_blackwhite_8bpp(t_tga *tga);
+bool	 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_colormapped_8bpp(t_tga *tga);
+bool					tga_colormapped_8bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_colormapped_15bpp(t_tga *tga);
+bool					tga_colormapped_15bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_colormapped_16bpp(t_tga *tga);
+bool					tga_colormapped_16bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_colormapped_24bpp(t_tga *tga);
+bool					tga_colormapped_24bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_colormapped_32bpp(t_tga *tga);
+bool					tga_colormapped_32bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_truecolor_15bpp(t_tga *tga);
+bool					tga_truecolor_15bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_truecolor_16bpp(t_tga *tga);
+bool					tga_truecolor_16bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_truecolor_24bpp(t_tga *tga);
+bool					tga_truecolor_24bpp(t_tga *tga, unsigned int *dst);
 
-bool					tga_truecolor_32bpp(t_tga *tga);
+bool					tga_truecolor_32bpp(t_tga *tga, unsigned int *dst);
 
 bool	 				tga_blackwhite_8bpp_single(t_tga *tga, \
 													const int dst, \

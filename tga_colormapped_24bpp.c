@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 17:27:38 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/26 11:19:35 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-bool				tga_colormapped_24bpp(t_tga *tga)
+bool				tga_colormapped_24bpp(t_tga *tga, unsigned int *dst)
 {
 	size_t			i;
 	unsigned char	*it;
@@ -27,14 +27,14 @@ bool				tga_colormapped_24bpp(t_tga *tga)
 									+ tga->header->id_len);
 		while (i < (tga->width * tga->height) * (tga->header->bpp >> 3))
 		{
-			*tga->pixels = (0xff << 24)
+			*dst = (0xff << 24)
 					| (cm[(it[i] * (tga->header->cm_bpp >> 3)) + 2] << 16)
 					| (cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] << 8)
 					| (cm[(it[i] * (tga->header->cm_bpp >> 3))]);
 			i += (tga->header->bpp >> 3);
-			tga->pixels++;
+			dst++;
 		}
 		return (true);
 	}
-	return (tga_berror("NULL TGA pointer in CM24!", tga));
+	return (tga_berror("NULL parameter in CM24!", tga));
 }
