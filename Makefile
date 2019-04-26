@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 23:18:40 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/24 13:04:43 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/26 10:55:31 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC =		tga_blackwhite_8bpp.c \
 
 OFILES =	$(SRC:.c=.o)
 
-all: Makefile $(NAME)
+all: Makefile simpleTGA.h $(NAME)
 
 $(NAME): simpleTGA.h $(SRC) $(OFILES)
 	@echo "Object files successfully created"
