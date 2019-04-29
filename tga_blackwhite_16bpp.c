@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tga_blackwhite_8bpp.c                              :+:      :+:    :+:   */
+/*   tga_blackwhite_16bpp.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 12:21:32 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 11:47:37 by fmessina         ###   ########.fr       */
+/*   Created: 2019/04/29 11:47:11 by fmessina          #+#    #+#             */
+/*   Updated: 2019/04/29 14:52:12 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-bool 				tga_blackwhite_8bpp_single(t_tga *tga, \
+bool 				tga_blackwhite_16bpp_single(t_tga *tga, \
 												const int dst, \
 												const int src)
 {
@@ -21,33 +21,35 @@ bool 				tga_blackwhite_8bpp_single(t_tga *tga, \
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		tga->pixels[dst] = ((0xFF) << 24)  \
+		tga->pixels[dst] = ((it[src + 1] & 0xFF) << 24)  \
 					| ((it[src] & 0xFF) << 16) \
 					| ((it[src] & 0xFF) << 8)
 					| ((it[src] & 0xFF));
 		return (true);
 	}
-	return (tga_berror("NULL parameter in BW8S!", tga));
+	return (tga_berror("NULL parameter in BW16S!", tga));
 }
 
-bool 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *dst)
+bool 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst)
 {
 	size_t			i;
 	unsigned char	*it;
+
+
 
 	i = 0;
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		while (i < tga->width * tga->height)
+		while (i < (tga->width * tga->height) * 2)
 		{
-			dst[i] = ((0xFF) << 24)  \
+			dst[i / 2] = (((it[i + 1] & 0xFF)) << 24)  \
 						| ((it[i] & 0xFF) << 16) \
 						| ((it[i] & 0xFF) << 8)
 						| ((it[i] & 0xFF));
-			i++;
+			i += 2;
 		}
 		return (true);
 	}
-	return (tga_berror("NULL parameter in BW8!", tga));
+	return (tga_berror("NULL parameter in BW16!", tga));
 }

@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 23:18:40 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/29 10:48:41 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/29 11:47:51 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC =		clang
 CFLAGS +=	-Wall -Wextra -Werror $(DEBUGFLAGS) $(ASANFLAGS)
 
 SRC =		tga_blackwhite_8bpp.c \
+			tga_blackwhite_16bpp.c \
 			tga_colormapped_8bpp.c \
 			tga_colormapped_15bpp.c \
 			tga_colormapped_16bpp.c \
