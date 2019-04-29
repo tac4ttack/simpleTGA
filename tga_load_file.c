@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 11:02:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/26 10:05:21 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:42:04 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static bool				tga_fill_info(t_tga *tga, void *data)
 	{
 		tga->header = (t_tga_header *)data;
 		tga->image_origin = tga_get_origin(tga->header->image_descriptor);
+		tga->depth = tga->header->bpp;
 		tga->width = tga->header->image_width;
 		tga->height = tga->header->image_heigth;
-		tga->depth = tga->header->bpp;
+		tga->n_pix = tga->width * tga->height;
 		tga->signature = (char*)(data + tga->file_size - 18);
 		if (tga->header->id_len > 0)
 			tga->id = (char*)(data + sizeof(t_tga_header));
@@ -90,6 +91,8 @@ t_tga					*tga_load_file(const char *target)
 			return (tga_error("Error during header decryption", tga));
 		if (!(tga_process_pixels(tga)))
 			return (tga_error("Failed processing TGA file's pixels!", tga));
+		if (!(tga_post_process(tga)))
+			return (tga_error("Failed post processing TGA file!", tga));
 		else
 			return (tga);
 	}

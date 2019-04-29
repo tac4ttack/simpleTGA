@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:21:32 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 11:47:37 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *dst)
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		while (i < tga->width * tga->height)
+		while (i < tga->n_pix)
 		{
 			dst[i] = ((0xFF) << 24)  \
 						| ((it[i] & 0xFF) << 16) \

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:54:47 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 15:57:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool				tga_colormapped_16bpp(t_tga *tga, unsigned int *dst)
 		it = (unsigned char *)(tga->data + tga->data_offset);
 		cm = (unsigned char *)(tga->data + sizeof(t_tga_header) \
 								+ tga->header->id_len);
-		while (i < (tga->width * tga->height) * (tga->header->bpp >> 3))
+		while (i < (tga->n_pix) * (tga->header->bpp >> 3))
 		{
 			argb[0] = 0xFF - ((cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] \
 						 & 0x80) >> 7);

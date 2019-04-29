@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 11:47:11 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 14:52:12 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst)
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		while (i < (tga->width * tga->height) * 2)
+		while (i < (tga->n_pix) * 2)
 		{
 			dst[i / 2] = (((it[i + 1] & 0xFF)) << 24)  \
 						| ((it[i] & 0xFF) << 16) \

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:23:01 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 11:13:25 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	tga_process_rle(t_tga *tga)
 		iterator = (unsigned char*)(tga->data + tga->data_offset);
 		cursors[0] = 0;
 		cursors[1] = 0;
-		while (cursors[0] < tga->width * tga->height)
+		while (cursors[0] < tga->n_pix)
 		{
 			cursors[2] = (iterator[cursors[1]] & 0x7F) + 1;
 			if ((iterator[cursors[1]++] & 0x80) == 0x80)

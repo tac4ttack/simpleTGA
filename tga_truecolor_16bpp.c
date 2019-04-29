@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:38:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/26 19:08:27 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool				tga_truecolor_16bpp(t_tga *tga, unsigned int *dst)
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		while (i < tga->width * tga->height * 2)
+		while (i < tga->n_pix * 2)
 		{
 			argb[0] = 0xFF - ((it[i + 1] & 0x80) >> 7);
 			argb[1] = (it[i + 1] >> 2) & 0x1F;
