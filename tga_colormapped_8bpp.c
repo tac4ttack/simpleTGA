@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:54:47 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/26 11:19:58 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 12:32:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool				tga_colormapped_8bpp(t_tga *tga, unsigned int *dst)
 		cm = (unsigned char *)(tga->data + sizeof(t_tga_header) + tga->header->id_len);
 		while (i < (tga->width * tga->height) * (tga->header->bpp >> 3))
 		{
-			*dst = (0xff << 24)
+			*dst = (0xFF << 24)
 					| ((cm[(it[i] * (tga->header->cm_bpp >> 3))]) & 0xFF << 16)
 					| ((cm[(it[i] * (tga->header->cm_bpp >> 3))]) & 0xFF << 8)
 					| ((cm[(it[i] * (tga->header->cm_bpp >> 3))]) & 0xFF);

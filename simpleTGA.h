@@ -13,13 +13,13 @@
 #ifndef SIMPLE_TGA_PARSER_H
 # define SIMPLE_TGA_PARSER_H
 
-# include <stdlib.h>    // required for NULL size_t exit bidule
-# include <sys/stat.h>   // required for stat()
-# include <fcntl.h>      // required for open()
-# include <unistd.h>    // required for read()
-# include <stdio.h>     // required for printf()
-# include <string.h>    // required for bzero()
-# include <stdbool.h>	// required for bool type
+# include <stdlib.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdbool.h>
 
 # ifdef DEBUG
 #  define DEBUG_TGA 1
@@ -40,7 +40,6 @@
 # define TGA_IMG_ORI_TL 2
 # define TGA_IMG_ORI_TR 3
 
-// Pragma required to disable padding in next structure
 # pragma pack(push, 1)
 typedef struct			s_tga_header
 {
@@ -56,7 +55,6 @@ typedef struct			s_tga_header
 	unsigned short		image_heigth;
 	unsigned char		bpp;
 	unsigned char		image_descriptor;
-	// char				end_padding[3];	// inutile si pragma pack?
 }						t_tga_header;
 # pragma pack(pop)
 
@@ -77,27 +75,20 @@ typedef struct			s_tga
 	char				*id;
 }						t_tga;
 
-
-/*
-**	Will return NULL if failed, plus it will try to output on the stderr
-*/
 unsigned int			*tga_get_pixel_ptr(const t_tga *target);
+
 t_tga					*tga_load_file(const char *target);
+
 bool					tga_clean(t_tga *tga);
 
 void					*tga_error(const char *message, t_tga *trash);
+
 bool					tga_berror(const char *message, t_tga *trash);
 
 void					*tga_process_file(const char *target,
 											size_t *target_size);
 
 bool					tga_process_pixels(t_tga *tga);
-
-// bool					tga_process_rawbw(t_tga *tga);
-
-// bool					tga_process_rawcm(t_tga *tga);
-
-// bool					tga_process_rawtc(t_tga *tga);
 
 bool					tga_process_raw(t_tga *tga);
 
@@ -130,6 +121,26 @@ bool					tga_truecolor_24bpp(t_tga *tga, unsigned int *dst);
 bool					tga_truecolor_32bpp(t_tga *tga, unsigned int *dst);
 
 bool	 				tga_blackwhite_8bpp_single(t_tga *tga, \
+													const int dst, \
+													const int src);
+
+bool	 				tga_blackwhite_16bpp_single(t_tga *tga, \
+													const int dst, \
+													const int src);
+
+bool					tga_colormapped_15bpp_single(t_tga *tga, \
+													const int dst, \
+													const int src);
+
+bool					tga_colormapped_16bpp_single(t_tga *tga, \
+													const int dst, \
+													const int src);
+
+bool					tga_colormapped_24bpp_single(t_tga *tga, \
+													const int dst, \
+													const int src);
+
+bool					tga_colormapped_32bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
