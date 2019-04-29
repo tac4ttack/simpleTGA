@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tga_process_rlebw.c                                :+:      :+:    :+:   */
+/*   tga_process_rle.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:23:01 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/24 13:06:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 10:30:36 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-bool	tga_process_rlebw(t_tga *tga)
+bool	tga_process_rle(t_tga *tga)
 {
 	unsigned char	*iterator;
 	size_t			cursors[3];
@@ -20,7 +20,7 @@ bool	tga_process_rlebw(t_tga *tga)
 	if (tga)
 	{
 		if (tga->depth != 8)
-			tga_error("Invalid pixel depth for RLE BW format!", tga);
+			tga_error("Invalid pixel depth for RLE format!", tga);
 		else
 		{
 			iterator = (unsigned char*)(tga->data + tga->data_offset);
@@ -43,5 +43,5 @@ bool	tga_process_rlebw(t_tga *tga)
 			return (true);
 		}
 	}
-	return (tga_berror("Parsing RLE BW format failed!", tga));
+	return (tga_berror("Parsing RLE format failed!", tga));
 }

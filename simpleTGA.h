@@ -93,23 +93,23 @@ void					*tga_process_file(const char *target,
 
 bool					tga_process_pixels(t_tga *tga);
 
-bool					tga_process_rawbw(t_tga *tga);
+// bool					tga_process_rawbw(t_tga *tga);
 
-bool					tga_process_rawcm(t_tga *tga);
+// bool					tga_process_rawcm(t_tga *tga);
 
-bool					tga_process_rawtc(t_tga *tga);
+// bool					tga_process_rawtc(t_tga *tga);
+
+bool					tga_process_raw(t_tga *tga);
+
+bool					tga_process_rle(t_tga *tga);
 
 bool					tga_process_raw_packet(t_tga *tga, size_t cursors[3]);
 
 bool					tga_process_rle_packet(t_tga *tga, size_t cursors[3]);
 
-bool					tga_process_rlebw(t_tga *tga);
-
-bool					tga_process_rlecm(t_tga *tga);
-
-bool					tga_process_rletc(t_tga *tga);
-
 bool	 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *dst);
+
+bool	 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst);
 
 bool					tga_colormapped_8bpp(t_tga *tga, unsigned int *dst);
 
