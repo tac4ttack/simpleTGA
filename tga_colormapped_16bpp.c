@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:54:47 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 14:18:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 15:57:04 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool				tga_colormapped_16bpp_single(t_tga *tga, \
 						| (argb[2] << 8) | argb[3];
 		return (true);
 	}
-	return (tga_berror("NULL parameter in CM16!", tga));
+	return (tga_berror("NULL parameter in CM16S!", tga));
 }
 
 bool				tga_colormapped_16bpp(t_tga *tga, unsigned int *dst)
