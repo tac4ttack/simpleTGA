@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 23:18:40 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/29 11:47:51 by fmessina         ###   ########.fr        #
+#    Updated: 2019/04/29 16:48:18 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC =		tga_blackwhite_8bpp.c \
 			tga_colormapped_32bpp.c \
 			tga_error.c \
 			tga_load_file.c \
+			tga_post_process.c \
 			tga_process_file.c \
 			tga_process_pixels.c \
 			tga_process_raw.c \

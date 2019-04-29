@@ -68,6 +68,7 @@ typedef struct			s_tga
 	size_t				depth;
 	size_t				width;
 	size_t				height;
+	size_t				n_pix;
 	int					data_offset;
 	int					extension_offset;
 	int					developer_offset;
@@ -84,6 +85,8 @@ bool					tga_clean(t_tga *tga);
 void					*tga_error(const char *message, t_tga *trash);
 
 bool					tga_berror(const char *message, t_tga *trash);
+
+bool					tga_post_process(t_tga *tga);
 
 void					*tga_process_file(const char *target,
 											size_t *target_size);
