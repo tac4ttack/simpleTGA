@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 09:43:57 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 14:40:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/04/29 15:56:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	rlecm_get_pixel(t_tga *tga, const int dst, const int src)
 		else if (tga->header->cm_bpp == 16)
 			return (tga_colormapped_16bpp_single(tga, dst, src));
 		else if (tga->header->cm_bpp == 24)
-			return (tga_truecolor_24bpp_single(tga, dst, src));
+			return (tga_colormapped_24bpp_single(tga, dst, src));
 		else if (tga->header->cm_bpp == 32)
 			return (tga_colormapped_32bpp_single(tga, dst, src));
 		else
