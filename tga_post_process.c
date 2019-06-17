@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 16:06:49 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 19:21:01 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 20:02:24 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool			flip_vertically(t_tga *tga)
 {
 	unsigned int	*new;
 	size_t			cur[2];
-	fprintf(stdout, "debug !\n", NULL);
+
 	cur[0] = 0;
 	cur[1] = tga->height - 1;
 	if (tga)
