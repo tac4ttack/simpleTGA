@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 23:18:40 by fmessina          #+#    #+#              #
-#    Updated: 2019/04/29 16:48:18 by fmessina         ###   ########.fr        #
+#    Updated: 2019/06/17 19:40:54 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ $(NAME): simpleTGA.h $(SRC) $(OFILES)
 	@echo "Library indexed\n"
 
 debug:
-	$(eval DEBUGFLAGS = -DDEBUG_TGA -g)
+	$(eval DEBUGFLAGS = -DDEBUG_SIMPLE_TGA -g)
 
 debug_asan: debug
 	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer)

@@ -21,7 +21,7 @@
 # include <string.h>
 # include <stdbool.h>
 
-# ifdef DEBUG
+# ifdef DEBUG_SIMPLE_TGA
 #  define DEBUG_TGA 1
 # else
 #  define DEBUG_TGA	0
