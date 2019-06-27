@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 10:36:05 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 10:48:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:49:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-static bool is_valid_bpp(const size_t depth, const int mod)
+static bool		is_valid_bpp(const size_t depth, const int mod)
 {
 	if (mod == 1 || mod == 9)
 	{
@@ -39,7 +39,7 @@ static bool is_valid_bpp(const size_t depth, const int mod)
 		return (tga_berror("Invalid BPP for current image type!", NULL));
 }
 
-static bool	tga_process_rawcm(t_tga *tga)
+static bool		tga_process_rawcm(t_tga *tga)
 {
 	if (tga)
 	{
@@ -59,7 +59,7 @@ static bool	tga_process_rawcm(t_tga *tga)
 	return (tga_berror("NULL TGA pointer in tga_process_rawcm()!", tga));
 }
 
-static bool	tga_process_rawtc(t_tga *tga)
+static bool		tga_process_rawtc(t_tga *tga)
 {
 	if (tga)
 	{
@@ -77,7 +77,7 @@ static bool	tga_process_rawtc(t_tga *tga)
 	return (tga_berror("NULL TGA pointer in tga_process_rawtc()!", tga));
 }
 
-static bool	tga_process_rawbw(t_tga *tga)
+static bool		tga_process_rawbw(t_tga *tga)
 {
 	if (tga)
 	{
@@ -91,7 +91,7 @@ static bool	tga_process_rawbw(t_tga *tga)
 	return (tga_berror("NULL TGA pointer in tga_process_rawbw()!", tga));
 }
 
-bool	tga_process_raw(t_tga *tga)
+bool			tga_process_raw(t_tga *tga)
 {
 	if (tga)
 	{

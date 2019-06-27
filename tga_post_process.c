@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 16:06:49 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 20:02:24 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:48:43 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static bool			flip_vertically(t_tga *tga)
 				cur[1]--;
 			}
 		}
-		free (tga->pixels);
+		free(tga->pixels);
 		tga->pixels = new;
 		return (true);
 	}

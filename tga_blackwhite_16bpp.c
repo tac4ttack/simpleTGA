@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 11:47:11 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:42:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleTGA.h"
 
-bool 				tga_blackwhite_16bpp_single(t_tga *tga, \
+bool				tga_blackwhite_16bpp_single(t_tga *tga, \
 												const int dst, \
 												const int src)
 {
@@ -30,12 +30,10 @@ bool 				tga_blackwhite_16bpp_single(t_tga *tga, \
 	return (tga_berror("NULL parameter in BW16S!", tga));
 }
 
-bool 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst)
+bool				tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst)
 {
 	size_t			i;
 	unsigned char	*it;
-
-
 
 	i = 0;
 	if (tga)

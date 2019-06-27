@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 12:23:01 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:50:03 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ bool	tga_process_rle(t_tga *tga)
 		{
 			cursors[2] = (iterator[cursors[1]] & 0x7F) + 1;
 			if ((iterator[cursors[1]++] & 0x80) == 0x80)
-				{
-					if (!(tga_process_rle_packet(tga, cursors)))
+			{
+				if (!(tga_process_rle_packet(tga, cursors)))
 					return (tga_berror("Failed parsing RLE packet!", tga));
-				}
+			}
 			else
-				{
-					if (!(tga_process_raw_packet(tga, cursors)))
-						return (tga_berror("Failed parsing RAW RLE packet!", tga));
-				}
+			{
+				if (!(tga_process_raw_packet(tga, cursors)))
+					return (tga_berror("Failed parsing RAW RLE packet!", tga));
+			}
 		}
 		return (true);
 	}

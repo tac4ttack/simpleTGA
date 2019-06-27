@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:54:47 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:44:54 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ bool				tga_colormapped_8bpp(t_tga *tga, unsigned int *dst)
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		cm = (unsigned char *)(tga->data + sizeof(t_tga_header) + tga->header->id_len);
+		cm = (unsigned char *)(tga->data \
+								+ sizeof(t_tga_header) \
+								+ tga->header->id_len);
 		while (i < (tga->n_pix) * (tga->header->bpp >> 3))
 		{
 			*dst = (0xFF << 24)
@@ -36,4 +38,3 @@ bool				tga_colormapped_8bpp(t_tga *tga, unsigned int *dst)
 	}
 	return (tga_berror("NULL parameter in CM8!", tga));
 }
-

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 11:00:08 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:43:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ bool				tga_colormapped_32bpp_single(t_tga *tga, \
 		cm = (unsigned char *)(tga->data \
 									+ sizeof(t_tga_header) \
 									+ tga->header->id_len);
-		tga->pixels[dst] = (cm[(it[src] * (tga->header->cm_bpp >> 3)) + 3] << 24)
+		tga->pixels[dst] =\
+				(cm[(it[src] * (tga->header->cm_bpp >> 3)) + 3] << 24)
 				| (cm[(it[src] * (tga->header->cm_bpp >> 3)) + 2] << 16)
 				| (cm[(it[src] * (tga->header->cm_bpp >> 3)) + 1] << 8)
 				| (cm[(it[src] * (tga->header->cm_bpp >> 3))]);

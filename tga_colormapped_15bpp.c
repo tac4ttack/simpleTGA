@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:54:47 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:46:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ bool				tga_colormapped_15bpp_single(t_tga *tga, \
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		cm = (unsigned char *)(tga->data + sizeof(t_tga_header) + tga->header->id_len);
+		cm = (unsigned char *)(tga->data \
+								+ sizeof(t_tga_header) \
+								+ tga->header->id_len);
 		rgb[0] = (cm[(it[src] * (tga->header->cm_bpp >> 3)) + 1] >> 2) & 0x1F;
-		rgb[1] = ((cm[(it[src] * (tga->header->cm_bpp >> 3)) + 1] << 3) & 0x1C) \
-					| ((cm[(it[src] * (tga->header->cm_bpp >> 3))] >> 5) & 0x07);
+		rgb[1] = ((cm[(it[src] * (tga->header->cm_bpp >> 3)) + 1] << 3) & 0x1C)\
+				| ((cm[(it[src] * (tga->header->cm_bpp >> 3))] >> 5) & 0x07);
 		rgb[2] = (cm[(it[src] * (tga->header->cm_bpp >> 3))] & 0x1F);
-		tga->pixels[dst] = (255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+		tga->pixels[dst] =\
+		(255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 		return (true);
 	}
 	return (tga_berror("NULL parameter in CM15S!", tga));
@@ -45,12 +48,14 @@ bool				tga_colormapped_15bpp(t_tga *tga, unsigned int *dst)
 	if (tga)
 	{
 		it = (unsigned char *)(tga->data + tga->data_offset);
-		cm = (unsigned char *)(tga->data + sizeof(t_tga_header) + tga->header->id_len);
+		cm = (unsigned char *)(tga->data \
+								+ sizeof(t_tga_header) \
+								+ tga->header->id_len);
 		while (i < (tga->n_pix) * (tga->header->bpp >> 3))
 		{
-			rgb[0] = (cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] >> 2) & 0x1F;
-			rgb[1] = ((cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] << 3) & 0x1C) \
-						| ((cm[(it[i] * (tga->header->cm_bpp >> 3))] >> 5) & 0x07);
+			rgb[0] = (cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] >> 2) & 31;
+			rgb[1] = ((cm[(it[i] * (tga->header->cm_bpp >> 3)) + 1] << 3) & 28)\
+						| ((cm[(it[i] * (tga->header->cm_bpp >> 3))] >> 5) & 7);
 			rgb[2] = (cm[(it[i] * (tga->header->cm_bpp >> 3))] & 0x1F);
 			*dst = (255 << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 			i += (tga->header->bpp >> 3);
@@ -60,4 +65,3 @@ bool				tga_colormapped_15bpp(t_tga *tga, unsigned int *dst)
 	}
 	return (tga_berror("NULL parameter in CM15!", tga));
 }
-
