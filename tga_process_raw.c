@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 10:36:05 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/27 18:49:33 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:19 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleTGA.h"
+#include "simple_tga.h"
 
 static bool		is_valid_bpp(const size_t depth, const int mod)
 {

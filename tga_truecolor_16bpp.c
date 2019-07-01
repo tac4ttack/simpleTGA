@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:38:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/29 17:40:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:19 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleTGA.h"
+#include "simple_tga.h"
 
 bool				tga_truecolor_16bpp_single(t_tga *tga, \
 												const int dst, \

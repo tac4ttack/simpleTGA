@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simpleTGA.h                                :+:      :+:    :+:   */
+/*   simple_tga.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 12:08:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/04/24 11:44:45 by fmessina         ###   ########.fr       */
+/*   Created: 2019/07/01 15:32:01 by fmessina          #+#    #+#             */
+/*   Updated: 2019/07/01 15:32:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMPLE_TGA_PARSER_H
-# define SIMPLE_TGA_PARSER_H
+#ifndef SIMPLE_TGA_H
+# define SIMPLE_TGA_H
 
 # include <stdlib.h>
 # include <sys/stat.h>
@@ -41,6 +41,7 @@
 # define TGA_IMG_ORI_TR 3
 
 # pragma pack(push, 1)
+
 typedef struct			s_tga_header
 {
 	char				id_len;
@@ -101,9 +102,9 @@ bool					tga_process_raw_packet(t_tga *tga, size_t cursors[3]);
 
 bool					tga_process_rle_packet(t_tga *tga, size_t cursors[3]);
 
-bool	 				tga_blackwhite_8bpp(t_tga *tga, unsigned int *dst);
+bool					tga_blackwhite_8bpp(t_tga *tga, unsigned int *dst);
 
-bool	 				tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst);
+bool					tga_blackwhite_16bpp(t_tga *tga, unsigned int *dst);
 
 bool					tga_colormapped_8bpp(t_tga *tga, unsigned int *dst);
 
@@ -123,11 +124,11 @@ bool					tga_truecolor_24bpp(t_tga *tga, unsigned int *dst);
 
 bool					tga_truecolor_32bpp(t_tga *tga, unsigned int *dst);
 
-bool	 				tga_blackwhite_8bpp_single(t_tga *tga, \
+bool					tga_blackwhite_8bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
-bool	 				tga_blackwhite_16bpp_single(t_tga *tga, \
+bool					tga_blackwhite_16bpp_single(t_tga *tga, \
 													const int dst, \
 													const int src);
 
